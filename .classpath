@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="collectionSorts/src"/>
+	<classpathentry kind="src" path="datastructures_session1/JUnitHelloWorld/src/main/java"/>
+	<classpathentry kind="src" path="datastructures_session1/JUnitHelloWorld/src/test/java"/>
+	<classpathentry kind="src" path="DatastructureTask/src"/>
+	<classpathentry kind="src" path="JUnitHelloWorld/src/main/java"/>
+	<classpathentry kind="src" path="JUnitHelloWorld/src/test/java"/>
+	<classpathentry kind="src" path="multipleArrays/src"/>
+	<classpathentry kind="src" path="recursion/src"/>
+	<classpathentry kind="src" path="Searchs/src"/>
+	<classpathentry kind="src" path="springbootsamplemvc/src/main/java"/>
+	<classpathentry kind="src" path="springbootsamplemvc/src/test/java"/>
+	<classpathentry kind="output" path="DatastructureTask/bin"/>
+</classpath>

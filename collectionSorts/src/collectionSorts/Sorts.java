@@ -20,14 +20,16 @@ public class Sorts {
 		
 		
 		for(int i = 0; i < arr.length; i++) {
-			int smallest = arr[i];
+			
+			int indexSmallest = i;
+			
 			for(int j = i + 1; j < arr.length; j++) {
 				if(arr[j] < arr[i]) {	
-					smallest= arr[j];								
+					indexSmallest= j;								
 				}
-				int swap = arr[i];
-				arr[i] = arr[j] ;
-				arr[j] = swap;	
+				int swap = arr[indexSmallest];
+				arr[indexSmallest] = arr[i] ;
+				arr[i] = swap;	
 			}
 		}
 		for(int i = 0; i < arr.length; i++) {
@@ -39,10 +41,12 @@ public class Sorts {
 		int length = arr.length;
 		for(int i = 1; i < length; i++) {
 			int key = arr[i];
-			for(int j= i -1; j >0; j--) {
+			int j= i -1;
+			
+			while(j >=0 &&arr[j]>key) {
 				arr[j+1] = arr[j];
 			}
-					arr[j+1] = key;				
+			arr[j+1] = key;				
 				}
 		
 		for(int i = 0; i < arr.length; i++) {

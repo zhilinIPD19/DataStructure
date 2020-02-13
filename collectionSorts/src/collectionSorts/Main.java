@@ -7,9 +7,10 @@ public class Main {
 		
 		int[] intArray = {3,1,6,9,5};
 		
-		//sorts.bubbleSorts(intArray);
+		sorts.bubbleSorts(intArray);
 		System.out.println();
-		//sorts.selectionSorts(intArray);
+		sorts.selectionSorts(intArray);
+		System.out.println();
 		sorts.insertionSorts(intArray);
 	}
 }
