@@ -22,6 +22,7 @@ public class Main {
 		employees.add(new Employee("toto3",3, 3000));
 		employees.add(new Employee("toto4", 4, 10000));
 		employees.add(new Employee("toto5", 5, 20000));
+		
 		//ctrl + 2(a pause) + L
 		
 		
@@ -39,7 +40,5 @@ public class Main {
 		int[] ints = {1,2,3,4};
 		List<Integer> list = new ArrayList<Integer>();
 		
-	}
-	
-	
+	}		
 }
