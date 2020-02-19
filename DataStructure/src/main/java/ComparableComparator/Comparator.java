@@ -1,5 +1,5 @@
 package ComparableComparator;
 
-public class SComparator {
+public class Comparator {
 
 }
