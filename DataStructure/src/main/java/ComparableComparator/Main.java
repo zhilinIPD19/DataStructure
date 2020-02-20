@@ -14,7 +14,16 @@ public class Main {
 	employees.add(new Employee(5,"toto5",44,50000));
 	
 	Collections.sort(employees);
+	employees.stream().
+	forEach(emp -> System.out.println(emp));
 	
+	System.out.println("after sort");
+	
+	//Collections.sort(listEmployees);
+	Collections.sort(employees, new SalaryCompartor());
+	
+	employees.stream().
+		forEach(emp -> System.out.println(emp));
 	
 }
 }

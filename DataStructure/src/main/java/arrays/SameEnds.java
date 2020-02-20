@@ -19,7 +19,7 @@ public class SameEnds {
 		
 		for (int j = 0 ; j < len ; j++) {
 			
-			if(arr[j] != arr[arr.length + len - j]) {
+			if(arr[j] != arr[arr.length - len + j]) {
 				return false;
 			}
 		}

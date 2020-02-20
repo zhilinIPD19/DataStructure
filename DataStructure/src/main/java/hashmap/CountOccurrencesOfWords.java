@@ -9,18 +9,19 @@ public class CountOccurrencesOfWords {
 		
 		String[] words = str.split(" ");
 		
-		Map<String,Integer> uniqueWords = new HashMap<String,Integer>();
+		Map<String,Integer> occurances = new HashMap<String,Integer>();
 		
-		for (int i = 0; i < words.length; i++) {	
+		for (String word : words){	
 			
-			if(!uniqueWords.containsValue(words[i])) {
+			if(!occurances.containsKey(word)) {
 				
-					uniqueWords.put(words[i],1);}
+				occurances.put(word,1);}
 			
-			else uniqueWords.put(words[i],(uniqueWords.get(words[i])+1));
+			else occurances.put(word,(occurances.get(word)+1));
 		}
 		
-		uniqueWords.forEach((keeeey,vaaaalue) -> System.out.println("Key = "
+		
+		occurances.forEach((keeeey,vaaaalue) -> System.out.println("Key = "
 
                 + keeeey + ", Value = " + vaaaalue)); 
 		

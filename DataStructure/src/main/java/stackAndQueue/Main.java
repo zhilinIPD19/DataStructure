@@ -9,7 +9,7 @@ public class Main {
 		ints.add(new Integer(2));
 		ints.add(new Integer(3));
 		ints.add(new Integer(4));
-		Stack<Integer> stack = new Stack<Integer>(ints);
+		StackZ<Integer> stack = new StackZ<Integer>(ints);
 		System.out.println(stack.pop());
 		
 		

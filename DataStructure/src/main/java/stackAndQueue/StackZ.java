@@ -2,7 +2,7 @@ package stackAndQueue;
 
 import java.util.ArrayList;
 
-public class Stack<T> {
+public class StackZ<T> {
 	
 	private ArrayList<T> arr;
 	private int size;
@@ -49,7 +49,7 @@ public class Stack<T> {
 	}
 
 
-	public Stack(ArrayList<T> arr) {
+	public StackZ(ArrayList<T> arr) {
 		this.arr = arr;
 		this.size = arr.size();
 		this.bottom = arr.get(0);

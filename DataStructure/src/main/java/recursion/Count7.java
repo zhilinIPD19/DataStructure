@@ -4,7 +4,7 @@ public class Count7 {
 	public static int count7(int digites) {
 		
 		
-		if (digites%10<1)
+		if (digites==0)
 			return 0;
 		if (digites%10 == 7) {	
 	

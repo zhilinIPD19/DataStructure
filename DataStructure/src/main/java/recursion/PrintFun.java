@@ -1,6 +1,7 @@
 package recursion;
 
 public class PrintFun {
+	
 	public void printFun(int test) {
 		if(test<1) {
 			return;
@@ -13,6 +14,7 @@ public class PrintFun {
 		}
 		
 	}
+	//Fact(n) = n!
 	public int fact(int n) {	
 		
 		if(n == 1) {
@@ -20,7 +22,7 @@ public class PrintFun {
 		}		
 		return fact(n-1)*n;	
 	}
-	
+	//Power(base, n)
 	public int power(int base, int n) {	
 		if(n == 0) {
 			return 1;
@@ -28,10 +30,10 @@ public class PrintFun {
 			
 		return power(base, n -1 ) * base;	
 	}
+	//find the maximum value in the input array a[] of size n.
 	public int FindMaxium(int[] intArray,int length) {	
 		
-		
-		
+			
 		if(length == 1) {
 			return intArray[0];
 		}				
