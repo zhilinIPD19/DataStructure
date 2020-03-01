@@ -1,6 +1,7 @@
 package hashmap;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,23 +128,63 @@ public class CountOccurrencesOfWords {
 		}
 		return letters;
 	}
-	  static int sherlockAndAnagrams(String s) {
+	  static int sherlockAndAnagrams1(String s) {
 		 int count = 0;
-		 List<Map<Character, Integer>> subStrings = new ArrayList<Map<Character, Integer>>();
-		 for (int i = 0; i < s.length(); i++) {
-			 for (int j =i+ 1;j < s.length(); j++) {
-				subStrings.add(mapWords(s.substring(i,j)));				 
+		 
+		 for (int i = 1; i < s.length(); i++) {
+			 List<String> subStrings = new ArrayList<String>();
+			 for (int j = 0 ; i+j <= s.length(); j++) {
+				subStrings.add(s.substring(j,i+j));				 
 				}
-			}			
-		 for (int i = 0; i < subStrings.size()-1; i++) {
-			 for(int j = 1; j < subStrings.size(); j++) {
-				 if(subStrings.get(i).equals(subStrings.get(j))){
-					 count++;
-				 }
+				
+		 System.out.println(subStrings.toString());
+		 for (int k = 0; k < subStrings.size(); k++) {
+			 for (int l =k+1; l < subStrings.size(); l++) {
+				if(isAnagrams(subStrings.get(i),subStrings.get(l)))
+				count++;
 			 }
+		 	}
 		 }
 		 return count;
 	    }
+	  static int sherlockAndAnagrams(String s) {
+	        int cnt = 0;
+	        for (int i = 1, n = s.length(); i < n; i++) {
+	            List<String> subsetList = new ArrayList<>();
+	            for (int j = 0; j < n; j++) {
+	                if (i + j <= n) {
+	                    subsetList.add(s.substring(j, i + j));
+	                }
+	           
+
+	            for (int k = 0, size = subsetList.size(); k < size; k++) {
+	                for (int l = k + 1; l < size; l++) {
+	                    if (isAnagrams(subsetList.get(k), subsetList.get(l))) {
+	                        cnt++;
+	                    }
+	                }
+	            }
+	            }
+	            System.out.println(subsetList.toString());
+	        }
+	            
+
+
+	        return cnt;
+	    }
+	  static boolean isAnagrams(String str1,String str2) {
+		  if(str1.length() != str2.length())
+			  return false;
+		  char[] chars1 = str1.toCharArray();
+		  char[] chars2 = str2.toCharArray();		  
+		  Arrays.sort(chars1);
+		  Arrays.sort(chars2);
+		  for (int i = 0; i < chars2.length; i++) {
+			if(chars1[i] != chars2[i])		
+			  return false;
+		  }
+		  return true;
+	  }
 
 	public static void main(String[] args) {
 		String str = "abs abc abc abd abs";
@@ -152,6 +193,7 @@ public class CountOccurrencesOfWords {
 		String[] str2 = {"two","times","two","is","four"};
 		checkMagazine(str1,str2);
 		String str3 = "ifailuhkqq";
-		System.err.println(sherlockAndAnagrams(str3));
+		String str4 = "kkkk";
+		System.err.println(sherlockAndAnagrams1(str4));
 	}
 }
