@@ -2,9 +2,13 @@ package hashmap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class CountOccurrencesOfWords {
 
@@ -129,18 +133,16 @@ public class CountOccurrencesOfWords {
 		return letters;
 	}
 	  static int sherlockAndAnagrams1(String s) {
-		 int count = 0;
-		 
+		 int count = 0;		 
 		 for (int i = 1; i < s.length(); i++) {
 			 List<String> subStrings = new ArrayList<String>();
 			 for (int j = 0 ; i+j <= s.length(); j++) {
 				subStrings.add(s.substring(j,i+j));				 
 				}
-				
-		 System.out.println(subStrings.toString());
-		 for (int k = 0; k < subStrings.size(); k++) {
+						 
+		 for (int k = 0; k < subStrings.size()-1; k++) {
 			 for (int l =k+1; l < subStrings.size(); l++) {
-				if(isAnagrams(subStrings.get(i),subStrings.get(l)))
+				if(isAnagrams(subStrings.get(k),subStrings.get(l)))
 				count++;
 			 }
 		 	}
@@ -172,9 +174,7 @@ public class CountOccurrencesOfWords {
 
 	        return cnt;
 	    }
-	  static boolean isAnagrams(String str1,String str2) {
-		  if(str1.length() != str2.length())
-			  return false;
+	  static boolean isAnagrams(String str1,String str2) {		 
 		  char[] chars1 = str1.toCharArray();
 		  char[] chars2 = str2.toCharArray();		  
 		  Arrays.sort(chars1);
@@ -185,15 +185,155 @@ public class CountOccurrencesOfWords {
 		  }
 		  return true;
 	  }
+	    // Complete the countTriplets function below.
+	    static long countTriplets1(List<Long> arr, long r) {
+	    	long count = 0;
+	    	int size = arr.size();
+	    	if(size < 3)
+	    		return 0;
+	    	for (int i = 0; i < size -2; i++) {
+	    		for (int j = i+1; j < size -1; j++) {
+	    			for (int k = j+1; k < size; k++) {
+	    				if(arr.get(i)*r == arr.get(j)&&arr.get(j)*r ==arr.get(k))
+	    					count++;
+	    			}
+	    		}
+				
+			}	    	
+	    	return count;
+	    }
+	 
+	    static long countTriplets(List<Long> arr, long r) {
+	        long countTriplets = 0;
+	        Map<Long, Long> map = new HashMap<>();
+	        Map<Long, Long> resultMap = new HashMap<>();
+	        for (long num : arr) {
+	        	
+	            if (num % r == 0) {
+	                long previous = num / r;
+	                Long countPro = resultMap.get(previous);
+	                if (countPro  != null)
+	                	countTriplets += countPro ;
+
+	                Long countMap = map.get(previous);
+	                if (countMap != null)
+	                	resultMap.put(num, resultMap.getOrDefault(num, 0L) + countMap);
+	            }
+	            map.put(num, map.getOrDefault(num, 0L) + 1);
+	        }
+	        return countTriplets;
+	    }
+	    static List<Integer> freqQuery(List<List<Integer>> queries) {
+	    	List<Integer> freqQuery = new ArrayList<Integer>();
+	    	Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+	    	for (int i = 0; i < queries.size(); i++) {
+	    		Integer num = queries.get(i).get(1);
+				switch (queries.get(i).get(0)) {
+				case 1: 
+					map.put(num, map.getOrDefault(num, 0) + 1);
+					break;
+				case 2: 
+					if(map.containsKey(num)) {
+                        map.remove(num, 1);
+                    };
+					break;
+				case 3: 
+					if(map.containsValue(2))
+					{		
+						freqQuery.add(1);
+						break;
+					}else {
+						freqQuery.add(0);
+					}
+				}				
+			}
+	    	return freqQuery;
+	    }
+	static int maximumToys(int[] prices, int k) {
+	   
+	   List<Integer> priceList = 
+			   Arrays.stream(prices).boxed().collect(Collectors.toList());
+	   System.out.println(priceList);
+	   Collections.sort(priceList);
+	   System.out.println(priceList);
+	   int index = 0;
+	   int sum = 0;
+	   while(sum <= k ) {
+		   sum += priceList.get(index);
+		   index++;
+	   }
+	   return index-1;
+
+	}
+	 // 2 ,3 ,4, 2 ,3, 6, 8, 4 ,5
+    static int activityNotifications1(int[] expenditure, int d) {
+    	int count = 0;  
+    	int twoTimesMedian = 0;
+    	for (int i = d; i < expenditure.length; i++) {			
+    		//get median
+    		List<Integer> expList = new ArrayList<Integer>();
+    		for (int j = i - d; j < i; j++) {
+				expList.add(expenditure[j]);
+			}
+    		Collections.sort(expList);
+    		System.out.println(expList);
+    		if( d%2 == 0){
+    			twoTimesMedian = expList.get(d/2) + expList.get(d/2-1);			
+    		} else {
+    			twoTimesMedian = expList.get(d/2)*2; 			
+    		}
+    		if(expenditure[i] >= twoTimesMedian) {
+    			count++;
+    		}    		
+    	}
+		return count;
+    }
+    static int activityNotifications(int[] expenditure, int d) {
+    	int countNotif = 0;  
+    	int twoTimesMedian = 0;
+    	Map<Integer,Integer> expenditureInDays = new TreeMap<Integer,Integer>();
+    	
+    	for (int i = 0; i < d; i++) {	
+    		expenditureInDays.put(expenditure[i], expenditureInDays.getOrDefault(expenditure[i], 0)+1);
+    	}
+    		//get median
+    		int count = d/2;
+    		
+    		
+    		if( d%2 == 0){
+    			twoTimesMedian = expList.get(d/2) + expList.get(d/2-1);			
+    		} else {
+    			twoTimesMedian = expList.get(d/2)*2; 			
+    		}
+    		if(expenditure[i] >= twoTimesMedian) {
+    			countNotif++;
+    		}    		
+    	}
+		return countNotif;
+    }
+
 
 	public static void main(String[] args) {
 		String str = "abs abc abc abd abs";
-		countOccurrencesOfWords(str);
+		//countOccurrencesOfWords(str);
 		String[] str1 = {"two","times","three","is","not","four"};
 		String[] str2 = {"two","times","two","is","four"};
-		checkMagazine(str1,str2);
+		//checkMagazine(str1,str2);
 		String str3 = "ifailuhkqq";
 		String str4 = "kkkk";
-		System.err.println(sherlockAndAnagrams1(str4));
+		//System.err.println(sherlockAndAnagrams1(str3));
+		//System.err.println(sherlockAndAnagrams1(str4));
+		List<Long> arr5 = new ArrayList<Long>();
+		arr5.add(1l);
+		arr5.add(2l);
+		arr5.add(2l);
+		arr5.add(4l);
+		//System.out.println( countTriplets(arr5,2));
+		int[] arr6 = {1, 12, 5, 111, 200, 1000, 10};
+		System.out.println();
+		//System.out.println(maximumToys(arr6,50)); 
+	//	System.out.println((float)(2+5)/2);
+		int[] arr7 = {2 ,3 ,4, 2 ,3, 6, 8, 4 ,5};
+		System.out.println(activityNotifications(arr7,5));
 	}
 }
