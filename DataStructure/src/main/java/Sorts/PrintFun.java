@@ -76,11 +76,11 @@ public class PrintFun {
 		boolean visited[] = new boolean[arr.length];
 
 		for (int i = 0; i < arr.length; i++) {
-			int j = i, cycle = 0;
+			int cycle = 0;
 
-			while (!visited[j]) {
-				visited[j] = true;
-				j = arr[j] - 1;
+			while (!visited[i]) {
+				visited[i] = true;
+				i = arr[i] - 1;
 				cycle++;
 			}
 

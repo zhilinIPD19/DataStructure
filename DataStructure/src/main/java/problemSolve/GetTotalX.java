@@ -1,6 +1,7 @@
 package problemSolve;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -12,7 +13,7 @@ public class GetTotalX {
 	 * parameters: 1. INTEGER_ARRAY a 2. INTEGER_ARRAY b
 	 */
 
-	public static int getTotalX(List<Integer> a, List<Integer> b) {
+	public static int getTotalX1(List<Integer> a, List<Integer> b) {
 		int count = 1;
 		Integer max = findLargestCommonDivisorOfList(b);
 		Integer min = findSmallestCommonMultipleOfList(a);
@@ -114,10 +115,41 @@ public class GetTotalX {
 		}
 		return scm;
 	}
+    public static int getTotalX(List<Integer> a, List<Integer> b) {
+    	Integer min = Collections.max(a);
+    	Integer max = Collections.min(b);
+    	int x = 0;
+    	int count = 1;  
+    	int test = min*count;
+    	while(max>=test) {   		
+    		boolean isFound= true;
+    		for (Integer integer : a) {
+				if(test%integer != 0) {
+					isFound = false;
+					break;
+				}
+    		}
+    		if (isFound) {    			
+    			for (Integer integer : b) {
+    				if(integer%test != 0) {
+    					isFound = false;
+    					break;
+    				}    			
+    			}
+    		}
+			if(isFound) {
+				x++;
+			}
+			count++;
+			test = min*count;			
+    	}
+    	return x;
+        
+}
 	public static void main(String[] args) {
 		List<Integer> a = new ArrayList<Integer>();
 		List<Integer> b = new ArrayList<Integer>();
-		a.add(100);
+		/*a.add(100);
 		a.add(99);
 		a.add(98);
 		a.add(97);
@@ -137,11 +169,18 @@ public class GetTotalX {
 		b.add(7);
 		b.add(8);
 		b.add(9);
-		b.add(10);
-		//System.out.println(getTotalX(a, b));
+		b.add(10);*/
+		a.add(4);
+	
+		a.add(2);
+		b.add(16);
+		b.add(32);
+		b.add(96);
+		
+		System.out.println(getTotalX(a, b));
 		int[] arr2 = new int[] { 100, 99, 98 ,97, 96, 95, 94, 93,92, 91};
 		int[] arr3 = new int[] { 1, 2 ,3 ,4, 5 ,6 ,7, 8, 9, 10};
-		System.out.println(getTotalX1(arr2, arr3));
+		//System.out.println(getTotalX1(arr2, arr3));
 	//	System.out.println(findLargestCommonDivisorOfIntArray(weight));
 	//	int[] arr1 = {2,4};
 	//	System.out.println(findSmallestCommonMultipleOfIntArray(arr1));
