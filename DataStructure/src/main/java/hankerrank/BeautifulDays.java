@@ -20,6 +20,6 @@ public class BeautifulDays {
 	 }
 	 public static void main(String[] args) {
 		System.out.println(reverseInt(122));
-		System.out.println(beautifulDays(24,12,4));
+		System.out.println(beautifulDays(2,12,4));
 	}
 }

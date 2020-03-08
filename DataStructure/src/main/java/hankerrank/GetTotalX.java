@@ -1,9 +1,8 @@
-package problemSolve;
+package hankerrank;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 
 public class GetTotalX {
 	/*
@@ -190,3 +189,6 @@ public class GetTotalX {
 	}
 
 }
+
+
+

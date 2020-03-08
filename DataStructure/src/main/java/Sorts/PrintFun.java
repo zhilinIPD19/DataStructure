@@ -47,49 +47,6 @@ public class PrintFun {
 		}
 	}
 
-	// not very efficient when time limits
-	static int minimumSwaps1(int[] arr) {
-		int count = 0;
-
-		for (int i = 0; i < arr.length; i++) {
-			int currentIndexSmallest = i;
-			int currentSmallest = arr[i];
-			for (int j = i + 1; j < arr.length; j++) {
-				if (arr[j] < currentSmallest) {
-					currentIndexSmallest = j;
-					currentSmallest = arr[j];
-				}
-			}
-			if (currentIndexSmallest != i) {
-				arr[currentIndexSmallest] = arr[i];
-				arr[i] = currentSmallest;
-				count++;
-
-			}
-		}
-		return count;
-	}
-
-	static int minimumSwaps(int[] arr) {
-
-		int count = 0;
-		boolean visited[] = new boolean[arr.length];
-
-		for (int i = 0; i < arr.length; i++) {
-			int cycle = 0;
-
-			while (!visited[i]) {
-				visited[i] = true;
-				i = arr[i] - 1;
-				cycle++;
-			}
-
-			if (cycle != 0)
-				count += cycle - 1;
-		}
-
-		return count;
-	}
 
 	public void insertionSorts(int[] arr) {
 
@@ -108,26 +65,7 @@ public class PrintFun {
 			System.out.print(arr[i] + " ");
 		}
 	}
-	   static long arrayManipulation(int n, int[][] queries) {
-		    //Array storing how much one element is bigger than the previous element after each manipulation.
-		   	long resultArray[] = new long[n + 2];
-			for (int i = 0; i < queries.length; i++) {
-				int a = queries[i][0];
-				int b = queries[i][1];
-				int k = queries[i][2];
-				resultArray[a] += k;
-				resultArray[b+1] -= k;
-			}
-			//get the max value
-			long max = Long.MIN_VALUE;
-			long sum = 0;
-			for (int i = 0; i < resultArray.length; i++) {
-				sum += resultArray[i];
-				max = Math.max(max, sum);
-			}
-			
-			return max;
-	    }
+	
 
 	public static void main(String[] args) {
 
@@ -141,6 +79,6 @@ public class PrintFun {
 		System.out.println();
 		// sorts.insertionSorts(intArray);
 		System.out.println();
-		System.out.println(minimumSwaps(intArray));
+		
 	}
 }

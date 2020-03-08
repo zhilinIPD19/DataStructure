@@ -1,4 +1,4 @@
-package arrays;
+package hankerrank;
 
 import java.util.Scanner;
 

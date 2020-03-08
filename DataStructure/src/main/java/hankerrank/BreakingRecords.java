@@ -1,4 +1,4 @@
-package arrays;
+package hankerrank;
 
 public class BreakingRecords {
 	  static int[] breakingRecords(int[] scores) {
