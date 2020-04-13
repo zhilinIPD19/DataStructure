@@ -10,7 +10,7 @@ public class MaxSubSetSum {
 				
 		int currentPosition = 1;// check start from index 1
 		int incl = arr[0];// sum include current position 
-		int excl = 0;//intitialize first sum to check if max sum can include first element
+		int excl = 0;//Initialize first sum to check if max sum can include first element
 		int exclNext = 0;//sum exclude current position for checking next item
 		while(currentPosition < arr.length) {
 			//current max excluding current position
